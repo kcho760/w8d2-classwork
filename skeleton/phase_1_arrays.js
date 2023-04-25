@@ -27,29 +27,29 @@
 
 // [-2, -3, -1, 2, 3, 4, 1].twoSum();
 
-Array.prototype.transpose = function () {
-    const transposed = [];
+// Array.prototype.transpose = function () {
+//     const transposed = [];
 
-    let i = 0;
-    while (i < this[0].length) {
-        const subArr = [];
+//     let i = 0;
+//     while (i < this[0].length) {
+//         const subArr = [];
 
-        let j = 0;
-        while (j < this.length) {
+//         let j = 0;
+//         while (j < this.length) {
 
-            subArr.push(this[j][i]);
-            j++
-        }
-        i++
+//             subArr.push(this[j][i]);
+//             j++
+//         }
+//         i++
 
-        transposed.push(subArr);
-    }
+//         transposed.push(subArr);
+//     }
 
 
-    console.log(transposed);
-};
+//     console.log(transposed);
+// };
 
-[[1, 2], [3, 4], [5, 6]].transpose();
+// [[1, 2], [3, 4], [5, 6]].transpose();
 
 Array.prototype.myEach = function (callback) {
     for (let i = 0; i < this.length; i++) {
@@ -57,4 +57,19 @@ Array.prototype.myEach = function (callback) {
     }
 };
 
-[1, 2, 3].myEach(callback);
+// [1, 2, 3].myEach(callback);
+
+Array.prototype.myMap = function (callback) {
+    const mapped = [];
+    this.myEach (el => {
+       mapped.push(callback(el));
+    }) 
+
+    console.log(mapped);
+};
+
+function callback(el) {
+    return el + "!";
+};
+
+["Kevin", "Brandon", "Kyle"].myMap(callback);
