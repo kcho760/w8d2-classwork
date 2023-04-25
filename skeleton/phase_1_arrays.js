@@ -1,17 +1,19 @@
-// Array.prototype.myUniq = function () {
-//     const newArr = [];
+Array.prototype.myUniq = function () {
+    const newArr = [];
 
-//     for (let i = 0; i < this.length; i++) {
-//         if (!newArr.includes(this[i])) {
-//             newArr.push(this[i]);
-//         }
-//     }
+    for (let i = 0; i < this.length; i++) {
+        if (!newArr.includes(this[i])) {
+            newArr.push(this[i]);
+        }
 
-//     // console.log(newArr);
-//     return newArr;
-// };
+        // if (newArr.indexOf(this[i]) === -1)
+    }
 
-// [1, 1, 2, 2, 3, 3].myUniq();
+    // console.log(newArr);
+    return newArr;
+};
+
+[1, 1, 2, 2, 3, 3].myUniq();
 
 // Array.prototype.twoSum = function () {
 //     const pairs = []
@@ -104,29 +106,29 @@ function bubbleSort(array) {
     while (!sorted) {
         sorted = true;
         for (let i = 0; i < array.length - 1; i++) {
-            for (let j = i+1; j < array.length; j++) {
+            for (let j = i + 1; j < array.length; j++) {
                 if (array[i] > array[j]) {
-                    [array[i],array[j]] = [array[j],array[i]];
+                    [array[i], array[j]] = [array[j], array[i]];
                     sorted = false;
                 };
-                
+
             };
-            
+
         }
     }
     return array;
 };
 
-console.log(bubbleSort([1,4,22,6,7,9,11]));
+console.log(bubbleSort([1, 4, 22, 6, 7, 9, 11]));
 
 function substrings(string) {
     const subs = [];
     // const stringy = string.split("");
     for (let start = 0; start < string.length; start++) {
-        for (let end = start+1; end <= string.length; end++) {
-            subs.push(string.slice(start,end))
+        for (let end = start + 1; end <= string.length; end++) {
+            subs.push(string.slice(start, end))
         };
-        
+
     }
 
     return subs;
