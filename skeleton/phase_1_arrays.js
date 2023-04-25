@@ -51,50 +51,85 @@
 
 // [[1, 2], [3, 4], [5, 6]].transpose();
 
-Array.prototype.myEach = function (callback) {
-    for (let i = 0; i < this.length; i++) {
-        callback(this[i]);
-    }
-};
+// Array.prototype.myEach = function (callback) {
+//     for (let i = 0; i < this.length; i++) {
+//         callback(this[i]);
+//     }
+// };
 
 // [1, 2, 3].myEach(callback);
 
-Array.prototype.myMap = function (callback) {
-    const mapped = [];
-    this.myEach(el => {
-        mapped.push(callback(el));
-    })
+// Array.prototype.myMap = function (callback) {
+//     const mapped = [];
+//     this.myEach(el => {
+//         mapped.push(callback(el));
+//     })
 
-    console.log(mapped);
-};
-
-// function callback(el) {
-//     return el + "!";
+//     console.log(mapped);
 // };
 
-// ["Kevin", "Brandon", "Kyle"].myMap(callback);
+// // function callback(el) {
+// //     return el + "!";
+// // };
 
-Array.prototype.myReduce = function (callback, acc) {
+// // ["Kevin", "Brandon", "Kyle"].myMap(callback);
 
-    let arr = this;
+// Array.prototype.myReduce = function (callback, acc) {
 
-    if (acc === undefined) {
-        acc = this[0];
-        arr = this.slice(1);
-    };
+//     let arr = this;
 
-    arr.myEach(el => {
-        return acc = callback(acc, el);
-    });
+//     if (acc === undefined) {
+//         acc = this[0];
+//         arr = this.slice(1);
+//     };
 
-    console.log(acc);
+//     arr.myEach(el => {
+//         return acc = callback(acc, el);
+//     });
+
+//     console.log(acc);
+// };
+
+// [1, 2, 3].myReduce(function (acc, el) {
+//     return acc + el;
+// });
+
+// [1, 2, 3].myReduce(function (acc, el) {
+//     return acc + el;
+// }, 25);
+
+function bubbleSort(array) {
+    let sorted = false;
+
+    while (!sorted) {
+        sorted = true;
+        for (let i = 0; i < array.length - 1; i++) {
+            for (let j = i+1; j < array.length; j++) {
+                if (array[i] > array[j]) {
+                    [array[i],array[j]] = [array[j],array[i]];
+                    sorted = false;
+                };
+                
+            };
+            
+        }
+    }
+    return array;
 };
 
-[1, 2, 3].myReduce(function (acc, el) {
-    return acc + el;
-});
+console.log(bubbleSort([1,4,22,6,7,9,11]));
 
-[1, 2, 3].myReduce(function (acc, el) {
-    return acc + el;
-}, 25);
+function substrings(string) {
+    const subs = [];
+    // const stringy = string.split("");
+    for (let start = 0; start < string.length; start++) {
+        for (let end = start+1; end <= string.length; end++) {
+            subs.push(string.slice(start,end))
+        };
+        
+    }
 
+    return subs;
+};
+
+console.log(substrings("apple"));
