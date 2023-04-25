@@ -61,15 +61,40 @@ Array.prototype.myEach = function (callback) {
 
 Array.prototype.myMap = function (callback) {
     const mapped = [];
-    this.myEach (el => {
-       mapped.push(callback(el));
-    }) 
+    this.myEach(el => {
+        mapped.push(callback(el));
+    })
 
     console.log(mapped);
 };
 
-function callback(el) {
-    return el + "!";
+// function callback(el) {
+//     return el + "!";
+// };
+
+// ["Kevin", "Brandon", "Kyle"].myMap(callback);
+
+Array.prototype.myReduce = function (callback, acc) {
+
+    let arr = this;
+
+    if (acc === undefined) {
+        acc = this[0];
+        arr = this.slice(1);
+    };
+
+    arr.myEach(el => {
+        return acc = callback(acc, el);
+    });
+
+    console.log(acc);
 };
 
-["Kevin", "Brandon", "Kyle"].myMap(callback);
+[1, 2, 3].myReduce(function (acc, el) {
+    return acc + el;
+});
+
+[1, 2, 3].myReduce(function (acc, el) {
+    return acc + el;
+}, 25);
+
