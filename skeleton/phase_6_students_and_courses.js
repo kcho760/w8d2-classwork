@@ -10,8 +10,15 @@ Student.prototype.name = function () {
 
 Student.prototype.enroll = function (course) {
     if (this.courses.indexOf(course) === -1) {
+        course.students.push(this.name);
         return this.courses.push(course);
     };
+
+    this.courses.forEach(function (studentCourse) {
+        if (studentCourse.conflictsWith(course)) {
+            throw new Error("You done messed up")
+        }
+    })
 };
 
 Student.prototype.courseLoad = function () {
@@ -29,7 +36,29 @@ Student.prototype.courseLoad = function () {
     });
 };
 
+function Course(name, department, credits, block, day) {
+    this.name = name;
+    this.department = department;
+    this.credits = credits;
+    this.students = [];
+    this.block = block;
+    this.days = days;
+}
 
+Course.prototype.addStudent = function (student) {
+    return this.students.push(student);
+    student.courses.push(this.name);
+};
+
+Course.prototype.conflictsWith = function(secondCourse) {
+    const daysOverlap = this.days.some(function (day) {
+        return this.days.includes(day);
+    });
+
+    const blockOverlap = this.block === secondCourse.block;
+
+    return daysOverlap && blockOverlap
+};
 
 
 
